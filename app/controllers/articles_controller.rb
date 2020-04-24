@@ -23,7 +23,10 @@ class ArticlesController < ApplicationController
   end
 
   def update
-
+    msg = 'saved successfully'
+    @article = Article.find(params[:id])
+    return redirect_to @article, notice: msg.to_s if @article.update(article_params)
+    render :edit
   end
 
   private
