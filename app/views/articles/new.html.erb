@@ -1,11 +1,14 @@
 <h1>Create a new article</h1>
 
 <% if @article.errors.any? %>
-  <% @article.errors.full_messages.each do |message| %>
-    <p>
-      <%= message %>
-    </p>
-  <% end %>
+<h2>The following errors prevented the article from being saved:</h2>
+  <ul>
+    <% @article.errors.full_messages.each do |message| %>
+      <li>
+        <%= message %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= form_with model: @article, local: true do |f| %>
