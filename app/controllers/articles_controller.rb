@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: %i|show edit update destroy|
+
   def index
     @articles = Article.all
   end
   
   def show
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -19,19 +20,16 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
     msg = 'saved successfully'
-    @article = Article.find(params[:id])
     return redirect_to @article, notice: msg.to_s if @article.update(article_params)
     render :edit
   end
 
   def destroy
     @articles = Article.all
-    @article = Article.find(params[:id])
     @article.delete
     render :index
   end
@@ -41,4 +39,9 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :description)
   end
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
 end

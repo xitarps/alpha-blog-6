@@ -10,11 +10,7 @@
   </head>
 
   <body>
-    <p>
-      <% flash.each do |name, message| %>
-        <%= message %>
-      <% end %>
-    </p>
+    <%= render partial: 'layouts/messages' %>
     <%= yield %>
   </body>
 </html>
