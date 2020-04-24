@@ -27,11 +27,12 @@
           <%= article.description %>
         </td>
         <td>
-          Placeholder
+          <%= link_to  "edit", edit_article_path(article.id) %>
+          <%= link_to  "delete", article_path(article.id), method: :delete %>
         </td>
       <tr>
 
     <% end %>
-
+  
   </tbody>
 </table>
