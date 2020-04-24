@@ -1,14 +1,22 @@
-<h1>New article</h1>
+<h1>Create a new article</h1>
+
+<% if @article.errors.any? %>
+  <% @article.errors.full_messages.each do |message| %>
+    <p>
+      <%= message %>
+    </p>
+  <% end %>
+<% end %>
 
 <%= form_with model: @article, local: true do |f| %>
 <p>
-  <%= f.label :title, 'Title:'%>
+  <%= f.label :title, 'Title:'%><br>
   <%= f.text_field :title, placeholder: 'type your title here' %>
 </p>
 
 <p>
-  <%= f.label :title, 'Description:'%>
-  <%= f.text_area :title, placeholder: 'type your description' %>
+  <%= f.label :description, 'Description:'%><br>
+  <%= f.text_area :description, placeholder: 'type your description' %>
 </p>
 <p>
   <%= f.submit %>
