@@ -28,8 +28,8 @@
         </td>
         <td>
           <%= link_to  "show", article_path(article) %>
-          <%= link_to  "edit", edit_article_path(article.id) %>
-          <%= link_to  "delete", article_path(article.id), method: :delete %>
+          <%= link_to  "edit", edit_article_path(article) %>
+          <%= link_to  "delete", article_path(article), method: :delete %>
         </td>
       </tr>
 
