@@ -1,0 +1,46 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+.navbar {
+  background-color: #1b1b1b !important
+}
+
+.nav-link {
+  color: #ffffff !important
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#home-container{
+  margin-top: 1.5em;
+}
+.jumbotron{
+  background-image: asset-url('chris-leggat-AoEEtI6onH4-unsplash');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 25em;
+}
+
+/* Sticky Footer Classes */
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+  background-color: #e0e0e0;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
