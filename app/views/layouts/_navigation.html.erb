@@ -6,28 +6,30 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to articles_path, class:'nav-link' do %>
-          Articles <span class="sr-only">(current)</span>
-        <% end%>
-      </li>
-      <li class="nav-item">
+      <!--li class="nav-item">
         <a class="nav-link" href="#">Link</a>
-      </li>
+      </li-->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Articles
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+
+          <%= link_to articles_path, class:'dropdown-item' do %>
+            View articles 
+          <% end%>
+
+          <%= link_to new_article_path, class:'dropdown-item' do %>
+            Create new article
+          <% end%>
+
+          <!--div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div-->
       </li>
-      <li class="nav-item">
+      <!--li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
+      </li-->
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
