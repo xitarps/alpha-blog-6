@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = User.first
     msg = 'saved successfully'
     return redirect_to @article, notice: msg.to_s if @article.save
     render :new
