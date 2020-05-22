@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
-  before_action :set_safe_user, only: [:edit, :update]
+  before_action :require_user, except: [:show, :index, :new, :create]
+  before_action :set_safe_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -37,6 +38,12 @@ class UsersController < ApplicationController
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
 
+  def destroy
+    session[:user_id] = nil
+    flash[:notice] = 'Account and all posts susccessfully deleted'
+    return redirect_to root_path if @user.destroy
+  end
+
   private
 
   def user_params
@@ -47,6 +54,6 @@ class UsersController < ApplicationController
     @user =User.find(params[:id])
   end
   def set_safe_user
-    @user = User.find(current_user.id)
+    @user = User.find(current_user)
   end
 end
