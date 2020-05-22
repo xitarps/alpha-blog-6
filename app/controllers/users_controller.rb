@@ -54,6 +54,6 @@ class UsersController < ApplicationController
     @user =User.find(params[:id])
   end
   def set_safe_user
-    @user = User.find(current_user)
+    @user = User.find(current_user.id)
   end
 end
