@@ -26,13 +26,13 @@ class ArticlesController < ApplicationController
 
   def update
     msg = 'saved successfully'
-    return redirect_to @article, notice: msg.to_s if @article.user == current_user && @article.update(article_params)
+    return redirect_to @article, notice: msg.to_s if (@article.user == current_user || current_user.admin? )&& @article.update(article_params)
     render :edit
   end
 
   def destroy
     @articles = Article.all
-    @article.delete if @article.user == current_user
+    @article.delete if @article.user == current_user || current_user.admin?
     redirect_to root_path
   end
 

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     msg = "You have successfully updated your data".to_sym
-    return redirect_to @user, notice: msg if current_user == @user && @user.update(user_params)
+    return redirect_to @user, notice: msg if (current_user == @user || current_user.admin?) && @user.update(user_params)
 
     render :edit
   end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:user_id] = nil if !current_user.admin?
     flash[:notice] = 'Account and all posts susccessfully deleted'
     return redirect_to root_path if @user.destroy
   end
@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     @user =User.find(params[:id])
   end
   def set_safe_user
+    return set_user if current_user.admin?
     @user = User.find(current_user.id)
   end
 end

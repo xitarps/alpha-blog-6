@@ -53,7 +53,7 @@
         <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
 
-          <%= link_to  current_user.username, '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
+          <%= link_to  "#{(current_user.admin?)? 'ADM - ': ''}#{current_user.username}", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to  "Edit your profile", edit_user_path(current_user), class: 'dropdown-item' %>
