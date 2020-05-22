@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show]
+  before_action :set_safe_user, only: [:edit, :update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     msg = "You have successfully updated your data".to_sym
-    return redirect_to @user, notice: msg if @user.update(user_params)
+    return redirect_to @user, notice: msg if current_user == @user && @user.update(user_params)
 
     render :edit
   end
@@ -44,5 +45,8 @@ class UsersController < ApplicationController
 
   def set_user
     @user =User.find(params[:id])
+  end
+  def set_safe_user
+    @user = User.find(current_user.id)
   end
 end

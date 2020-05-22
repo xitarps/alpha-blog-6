@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     msg = 'saved successfully'
     return redirect_to @article, notice: msg.to_s if @article.save
     render :new
@@ -25,14 +25,14 @@ class ArticlesController < ApplicationController
 
   def update
     msg = 'saved successfully'
-    return redirect_to @article, notice: msg.to_s if @article.update(article_params)
+    return redirect_to @article, notice: msg.to_s if @article.user == current_user && @article.update(article_params)
     render :edit
   end
 
   def destroy
     @articles = Article.all
-    @article.delete
-    render :index
+    @article.delete if @article.user == current_user
+    redirect_to root_path
   end
 
   private
