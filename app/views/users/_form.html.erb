@@ -1,0 +1,34 @@
+<div class="container">
+  <%= render 'shared/errors', obj: @user %>
+  <div class="row justify-content-center">
+    <div class="col-10">
+
+      <%= form_with model: @user, local: true, class: 'shadow p-4 mb-3 bg-info' do |f| %>
+        <div class="form-group row">
+            <%= f.label :username , 'Name:', class: 'col-3 col-form-label text-white'%>
+            <%= f.text_field :username, class:'col-8 form-cotrol shadow rounded', placeholder: "Enter your name", autofocus: true %>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :email , 'Email:', class: 'col-3 col-form-label text-white'%>
+            <%= f.email_field :email, class:'col-8 form-cotrol shadow rounded', placeholder: "Enter your email", autofocus: true %>
+        </div>
+
+        <div class="form-group row">
+            <%= f.label :password, 'Password:', class: 'col-3 col-form-label text-white' %>
+            <%= f.password_field :password, class: "col-8 form-control shadow rounded", placeholder: "Choose a password" %>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <%= f.submit 'Sign up', class: 'btn btn-outline-light btn-lg' %>
+        </div>
+      <% end %>
+    
+    </div>
+
+    <div class="mb-3">
+      <%= link_to "| Cancel request and return to articles listing |", articles_path, class: 'text-info' %>
+    </div>
+  </div>
+
+</div>
