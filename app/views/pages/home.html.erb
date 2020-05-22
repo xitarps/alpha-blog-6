@@ -4,6 +4,8 @@
     <p class="lead">Simple jumbotron-style component for calling extra attention to featured content or information.</p>
     <hr class="my-4">
     <p>With bootstrap.</p>
-    <a class="btn btn-success btn-lg" href="<%= signup_path%>" role="button">Sign up</a>
+    <% unless session[:user_id] %>
+      <a class="btn btn-success btn-lg" href="<%= signup_path%>" role="button">Sign up</a>
+    <% end %>
   </div>
 </div>
