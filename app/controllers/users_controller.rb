@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :fetch_categories
   before_action :set_user, only: [:show]
   before_action :require_user, except: [:show, :index, :new, :create]
   before_action :set_safe_user, only: [:edit, :update, :destroy]

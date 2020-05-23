@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :fetch_categories
   def home
     redirect_to articles_path if logged_in?
   end

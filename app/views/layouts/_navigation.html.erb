@@ -30,16 +30,23 @@
         </div>
       </li>
 
-      <% if logged_in? %>
-        <li class="nav-item">
-          <%= link_to  "Log out", logout_path, method: :delete, class: 'nav-link' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to  "Log in", login_path, class: 'nav-link' %>
-        </li>
-      <% end %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
 
+          <%= link_to  "Categories", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if logged_in? && current_user.admin? %>
+            <%= link_to  "Add new categorie", new_category_path, class: 'dropdown-item' %>
+          <% end %>
+          <%= link_to  "All Categories", categories_path, class: 'dropdown-item' %>
+            <% @categories.sort_by{|item| item.name }.each do |category| %>
+              <%= link_to  category.name, category_path(category), class: 'dropdown-item' %>
+            <% end %>
+          </div>
+
+        </li>
+      </ul>
 
     </ul>
 
@@ -51,20 +58,26 @@
         <%=link_to gravatar_for(current_user , size: 50), user_path(current_user) %>
 
         <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
 
-          <%= link_to  "#{(current_user.admin?)? 'ADM - ': ''}#{current_user.username}", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
+            <%= link_to  "#{(current_user.admin?)? 'ADM - ': ''}#{current_user.username}", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to  "Edit your profile", edit_user_path(current_user), class: 'dropdown-item' %>
-            <%= link_to  "Delete your profile", user_path(current_user), method: :delete, class: 'dropdown-item text-danger', data: {confirm: 'Are you sure you want to delete your user and all your posts?'} %>
-          </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to  "Edit your profile", edit_user_path(current_user), class: 'dropdown-item' %>
+              <%= link_to  "Delete your profile", user_path(current_user), method: :delete, class: 'dropdown-item text-danger', data: {confirm: 'Are you sure you want to delete your user and all your posts?'} %>
+            </div>
 
-        </li>
-      </ul>
+          </li>
+        </ul>
 
       <% else %>
         <%= link_to  'Sign up', signup_path, class: "nav-link" %>
+      <% end %>
+
+      <% if logged_in? %>
+        <%= link_to  "Log out", logout_path, method: :delete, class: 'nav-link' %>
+      <% else %>
+        <%= link_to  "Log in", login_path, class: 'nav-link' %>
       <% end %>
 
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
