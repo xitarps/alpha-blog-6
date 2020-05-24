@@ -1,5 +1,10 @@
 <h1 class="text-center mt-4"><%= @category.name %></h1>
 
+<% if logged_in? && current_user.admin? %>
+  <p class="text-center mt-4">
+    <%= link_to  'Edit category name' , edit_category_path(@category), class: 'btn btn-outline-light btn-lg', style: 'font-size: 1em;' %>
+  </p>
+<% end %>
 
 <% if @articles.empty? %>
   <h3 class="text-center mt-4">
