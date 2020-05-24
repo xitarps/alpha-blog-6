@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resources :categories, except: [:destroy]
+
+  get 'search', to: 'pages#search'
 end
