@@ -19,9 +19,17 @@
             <% end %>   
           </div>
           <div class="card-footer text-muted">
+            <% unless article.categories.empty?%>
+              <small>Categories:
+                <% article.categories.each do |category|%>
+                  <%= link_to  category.name, category_path(category) %>
+                <% end %>
+              </small>
+              <hr>
+            <% end %>
             <small>
-            Created <%= time_ago_in_words(article.created_at) %> ago, 
-            Modified: <%= time_ago_in_words(article.updated_at) %> ago
+              Created <%= time_ago_in_words(article.created_at) %> ago, 
+              Modified: <%= time_ago_in_words(article.updated_at) %> ago
             </small>
           </div>
         </div>
